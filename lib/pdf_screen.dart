@@ -14,11 +14,15 @@ class PdfData {
 
   Future<Uint8List> getPdf() async {
     var document = Document();
+    int subtotal = 0;
     int gst=500;
     int totalAmount = 0;
     for (int i = 0; i < invoicedetail.products.length; i++) {
-      int price = int.tryParse(invoicedetail.amount[i]) ?? 0;
-      totalAmount += (price+gst);
+      int prices = int.tryParse(invoicedetail.amount[i]) ?? 0;
+      subtotal += (prices);
+    }
+    for (int i = 0; i < invoicedetail.products.length; i++) {
+      totalAmount= (subtotal+gst);
     }
     int totalQuantity = 0;
     for (int i = 0; i < invoicedetail.products.length; i++) {
@@ -88,7 +92,6 @@ class PdfData {
             ),
           ),
           Divider(),
-          SizedBox(height: 30),
           Text(
             "INVOICE TYPE",
             style: TextStyle(fontSize: 30, letterSpacing: 4),
@@ -196,6 +199,53 @@ class PdfData {
           ),
           Divider(),
           Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text("Quantity:",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                SizedBox(width: 20),
+                Text(
+                  "$totalQuantity",
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(width: 80),
+                Padding(padding: EdgeInsets.only(left: -38),child:  Text(
+                  "Subtotal:",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ), ),
+                SizedBox(width: 20),
+                Text(
+                  "$subtotal",
+                  style: TextStyle(fontSize: 18),
+                ),
+
+              ]
+          ),
+          Divider(),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("Quantity:",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(width: 20),
+              Text(
+                "$totalQuantity",
+                style: TextStyle(fontSize: 18),
+              ),
+              Padding(padding: EdgeInsets.only(left: 45),child:  Text(
+                "GST 18%:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ), ),
+              SizedBox(width: 20),
+              Text(
+                "$gst",
+                style: TextStyle(fontSize: 18),
+              ),
+            ]
+          ),
+
+          Divider(),
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text("Quantity:",
@@ -218,7 +268,7 @@ class PdfData {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 110, left: 100),
+            padding: EdgeInsets.only(top: 50, left: 100),
             child: Row(
               children: [
                 Spacer(),
