@@ -14,10 +14,11 @@ class PdfData {
 
   Future<Uint8List> getPdf() async {
     var document = Document();
+    int gst=500;
     int totalAmount = 0;
     for (int i = 0; i < invoicedetail.products.length; i++) {
       int price = int.tryParse(invoicedetail.amount[i]) ?? 0;
-      totalAmount += (price);
+      totalAmount += (price+gst);
     }
     int totalQuantity = 0;
     for (int i = 0; i < invoicedetail.products.length; i++) {
@@ -172,14 +173,16 @@ class PdfData {
                 ],
               ),
               Spacer(),
-              Padding(padding: EdgeInsets.only(right: 45),child: Column(
-                children: [
-                  for (int i = 0; i < invoicedetail.Quantity.length; i++)
-                    Text("${int.tryParse(invoicedetail.Quantity[i]) ?? 0}",
-                        style: TextStyle(fontSize: 18)),
-                ],
-              ),),
-
+              Padding(
+                padding: EdgeInsets.only(right: 45),
+                child: Column(
+                  children: [
+                    for (int i = 0; i < invoicedetail.Quantity.length; i++)
+                      Text("${int.tryParse(invoicedetail.Quantity[i]) ?? 0}",
+                          style: TextStyle(fontSize: 18)),
+                  ],
+                ),
+              ),
               Spacer(),
               Column(
                 children: [
@@ -199,17 +202,17 @@ class PdfData {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(width: 20),
               Text(
-                "$totalQuantity", // Display the subtotal here
+                "$totalQuantity",
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(width: 80),
-              Text(
+              Padding(padding: EdgeInsets.only(left: -10),child:  Text(
                 "Total:",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+              ), ),
               SizedBox(width: 20),
               Text(
-                "$totalAmount", // Display the subtotal here
+                "$totalAmount",
                 style: TextStyle(fontSize: 18),
               ),
             ],

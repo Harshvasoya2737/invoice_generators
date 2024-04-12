@@ -114,17 +114,20 @@ class _homepageState extends State<homepage> {
                               Column(
                                 children: productlist
                                     .map(
-                                      (e) => Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: e,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  labelText: "Enter Product Name"),
+                                      (e) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: TextFormField(
+                                                controller: e,
+                                                decoration: InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: "Enter Product Name"),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     )
                                     .toList(),
@@ -136,17 +139,20 @@ class _homepageState extends State<homepage> {
                               Column(
                                 children: qunlist
                                     .map(
-                                      (e) => Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: e,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  labelText: "Enter Product Quantity"),
+                                      (e) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: TextFormField(
+                                                controller: e,
+                                                decoration: InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: "Enter Product Quantity"),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     )
                                     .toList(),
@@ -154,17 +160,20 @@ class _homepageState extends State<homepage> {
                               Column(
                                 children: pricelist
                                     .map(
-                                      (e) => Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: e,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  labelText: "Enter ProductBasket Price"),
+                                      (e) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: TextFormField(
+                                                controller: e,
+                                                decoration: InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: "Enter Product Price"),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     )
                                     .toList(),
